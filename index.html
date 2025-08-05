@@ -94,6 +94,17 @@
       <p>Strong community ties can help overcome barriers and improve health outcomes in rural areas.</p>
     </div>
     <div class="slide">
+      <h2>Knowledge Check #1</h2>
+      <p>Which of the following is a common challenge in rural health?</p>
+      <form class="quiz" data-answer="b">
+        <label><input type="radio" name="kc1" value="a"> Abundant healthcare providers</label><br>
+        <label><input type="radio" name="kc1" value="b"> Limited access to healthcare</label><br>
+        <label><input type="radio" name="kc1" value="c"> High population density</label><br>
+      </form>
+      <button class="check-btn">Check Answer</button>
+      <div class="feedback"></div>
+    </div>
+    <div class="slide">
       <h2>4. Telehealth Solutions</h2>
       <p>Telehealth brings medical care to remote locations, making it easier for rural residents to access specialists and routine care.</p>
     </div>
@@ -104,6 +115,16 @@
     <div class="slide">
       <h2>6. Mental Health Matters</h2>
       <p>Mental health is just as important as physical health. Rural Health Connect offers resources and support for mental wellness.</p>
+    </div>
+    <div class="slide">
+      <h2>Knowledge Check #2</h2>
+      <p>True or False: Mental health is less important than physical health in rural communities.</p>
+      <form class="quiz" data-answer="a">
+        <label><input type="radio" name="kc2" value="a"> False</label><br>
+        <label><input type="radio" name="kc2" value="b"> True</label><br>
+      </form>
+      <button class="check-btn">Check Answer</button>
+      <div class="feedback"></div>
     </div>
     <div class="slide">
       <h2>7. Nutrition & Wellness</h2>
@@ -118,8 +139,19 @@
       <p>Join local groups, volunteer, and participate in Rural Health Connect to make a difference in your community.</p>
     </div>
     <div class="slide">
+      <h2>Knowledge Check #3</h2>
+      <p>What is one way to get involved in improving rural health?</p>
+      <form class="quiz" data-answer="c">
+        <label><input type="radio" name="kc3" value="a"> Ignore community events</label><br>
+        <label><input type="radio" name="kc3" value="b"> Avoid volunteering</label><br>
+        <label><input type="radio" name="kc3" value="c"> Join local groups and volunteer</label><br>
+      </form>
+      <button class="check-btn">Check Answer</button>
+      <div class="feedback"></div>
+    </div>
+    <div class="slide">
       <h2>10. Next Steps</h2>
-      <p>Sign up at <a href="https://ruralhealthconnect.org" target="_blank">ruralhealthconnect.org</a> to access resources, connect with others, and start your journey to better health!</p>
+      <p>Sign up at <a href="https://ruralhealthconnect.org" target="_blank" rel="noopener">ruralhealthconnect.org</a> to access resources, connect with others, and start your journey to better health!</p>
     </div>
     <div class="nav-btns">
       <button id="prevBtn" disabled>Previous</button>
@@ -136,12 +168,14 @@
       slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === idx);
       });
+      current = idx;
+
       prevBtn.disabled = idx === 0;
       nextBtn.disabled = idx === slides.length - 1;
     }
 
     prevBtn.addEventListener('click', () => {
-      if (current > 0) {
+      if (current > 1) {
         current--;
         showSlide(current);
       }
@@ -151,6 +185,29 @@
         current++;
         showSlide(current);
       }
+    });
+
+    // Knowledge check logic
+    document.querySelectorAll('.check-btn').forEach((btn, idx) => {
+      btn.addEventListener('click', function() {
+        const slide = btn.closest('.slide');
+        const form = slide.querySelector('form.quiz');
+        const answer = form.getAttribute('data-answer');
+        const selected = form.querySelector('input[type="radio"]:checked');
+        const feedback = slide.querySelector('.feedback');
+        if (!selected) {
+          feedback.textContent = "Please select an answer.";
+          feedback.style.color = "#d9534f";
+          return;
+        }
+        if (selected.value === answer) {
+          feedback.textContent = "Correct!";
+          feedback.style.color = "#228B22";
+        } else {
+          feedback.textContent = "Incorrect. Try again.";
+          feedback.style.color = "#d9534f";
+        }
+      });
     });
   </script>
 </body>
