@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rural Health Connect - 10 Page Course</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f8f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .slide-container {
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      width: 90vw;
+      max-width: 700px;
+      min-height: 400px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .slide.active {
+      display: flex;
+    }
+    h1, h2 {
+      color: #228B22;
+      margin-bottom: 16px;
+    }
+    p {
+      color: #333;
+      font-size: 1.1em;
+      margin-bottom: 24px;
+    }
+    .nav-btns {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    button {
+      background: #228B22;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    @media (max-width: 600px) {
+      .slide-container {
+        padding: 20px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide active">
+      <h1>Welcome to Rural Health Connect</h1>
+      <p>This course will guide you through the essentials of rural health and how our platform can help you connect, learn, and thrive.</p>
+    </div>
+    <div class="slide">
+      <h2>1. What is Rural Health?</h2>
+      <p>Rural health focuses on the unique healthcare needs and challenges faced by people living in rural areas.</p>
+    </div>
+    <div class="slide">
+      <h2>2. Common Challenges</h2>
+      <p>Limited access to healthcare providers, transportation issues, and fewer resources are common in rural communities.</p>
+    </div>
+    <div class="slide">
+      <h2>3. Importance of Community</h2>
+      <p>Strong community ties can help overcome barriers and improve health outcomes in rural areas.</p>
+    </div>
+    <div class="slide">
+      <h2>4. Telehealth Solutions</h2>
+      <p>Telehealth brings medical care to remote locations, making it easier for rural residents to access specialists and routine care.</p>
+    </div>
+    <div class="slide">
+      <h2>5. Preventive Care</h2>
+      <p>Regular checkups, screenings, and vaccinations are vital for maintaining health and preventing disease.</p>
+    </div>
+    <div class="slide">
+      <h2>6. Mental Health Matters</h2>
+      <p>Mental health is just as important as physical health. Rural Health Connect offers resources and support for mental wellness.</p>
+    </div>
+    <div class="slide">
+      <h2>7. Nutrition & Wellness</h2>
+      <p>Healthy eating and active living are key to long-term wellness. Learn tips and resources tailored for rural lifestyles.</p>
+    </div>
+    <div class="slide">
+      <h2>8. Financial Assistance</h2>
+      <p>Discover programs and grants that can help cover medical costs and support rural families.</p>
+    </div>
+    <div class="slide">
+      <h2>9. How to Get Involved</h2>
+      <p>Join local groups, volunteer, and participate in Rural Health Connect to make a difference in your community.</p>
+    </div>
+    <div class="slide">
+      <h2>10. Next Steps</h2>
+      <p>Sign up at <a href="https://ruralhealthconnect.org" target="_blank">ruralhealthconnect.org</a> to access resources, connect with others, and start your journey to better health!</p>
+    </div>
+    <div class="nav-btns">
+      <button id="prevBtn" disabled>Previous</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
+    function showSlide(idx) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === idx);
+      });
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 0) {
+        current--;
+        showSlide(current);
+      }
+    });
+    nextBtn.addEventListener('click', () => {
+      if (current < slides.length - 1) {
+        current++;
+        showSlide(current);
+      }
+    });
+  </script>
+</body>
+</html>
